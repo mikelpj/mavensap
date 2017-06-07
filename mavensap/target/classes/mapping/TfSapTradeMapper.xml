@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.asia.dao.TfSapTradeDao">
+  <resultMap id="BaseResultMap" type="com.asia.entity.TfSapTrade">
+    <result column="SAP_TRADE_ID" jdbcType="DECIMAL" property="sapTradeId" />
+    <result column="SAP_SUBSCRIBE_ID" jdbcType="DECIMAL" property="sapSubscribeId" />
+    <result column="CBSS_TRADE_ID" jdbcType="DECIMAL" property="cbssTradeId" />
+    <result column="CBSS_SUBSCRIBE_ID" jdbcType="DECIMAL" property="cbssSubscribeId" />
+    <result column="TRADE_EPARCHY_CODE" jdbcType="VARCHAR" property="tradeEparchyCode" />
+    <result column="TRADE_CITY_CODE" jdbcType="VARCHAR" property="tradeCityCode" />
+    <result column="TRADE_DEPART_ID" jdbcType="VARCHAR" property="tradeDepartId" />
+    <result column="TRADE_STAFF_ID" jdbcType="VARCHAR" property="tradeStaffId" />
+    <result column="ACCEPT_MONTH" jdbcType="DECIMAL" property="acceptMonth" />
+    <result column="ACCEPT_DATE" jdbcType="TIMESTAMP" property="acceptDate" />
+    <result column="NET_TYPE_CODE" jdbcType="VARCHAR" property="netTypeCode" />
+    <result column="CUST_ID" jdbcType="DECIMAL" property="custId" />
+    <result column="CUST_NAME" jdbcType="VARCHAR" property="custName" />
+    <result column="SERIAL_NUMBER" jdbcType="VARCHAR" property="serialNumber" />
+    <result column="TOTAL_FEE" jdbcType="DECIMAL" property="totalFee" />
+    <result column="TRADE_TYPE_CODE" jdbcType="DECIMAL" property="tradeTypeCode" />
+    <result column="SUBSCRIBE_STATE" jdbcType="CHAR" property="subscribeState" />
+    <result column="NEXT_DEAL_TAG" jdbcType="CHAR" property="nextDealTag" />
+    <result column="CANCEL_EPARCHY_CODE" jdbcType="VARCHAR" property="cancelEparchyCode" />
+    <result column="CANCEL_CITY_CODE" jdbcType="VARCHAR" property="cancelCityCode" />
+    <result column="CANCEL_DEPART_ID" jdbcType="VARCHAR" property="cancelDepartId" />
+    <result column="CANCEL_STAFF_ID" jdbcType="VARCHAR" property="cancelStaffId" />
+    <result column="CANCEL_TAG" jdbcType="CHAR" property="cancelTag" />
+    <result column="CANCEL_DATE" jdbcType="TIMESTAMP" property="cancelDate" />
+    <result column="PRODUCT_ID" jdbcType="DECIMAL" property="productId" />
+    <result column="PRODUCT_NAME" jdbcType="VARCHAR" property="productName" />
+    <result column="PRODUCT_ID2" jdbcType="DECIMAL" property="productId2" />
+    <result column="PRODUCT_NAME2" jdbcType="VARCHAR" property="productName2" />
+    <result column="SERVICE_ID" jdbcType="DECIMAL" property="serviceId" />
+    <result column="SERVICE_NAME" jdbcType="VARCHAR" property="serviceName" />
+    <result column="DISCNT_CODE" jdbcType="DECIMAL" property="discntCode" />
+    <result column="DISCNT_NAME" jdbcType="VARCHAR" property="discntName" />
+    <result column="IS_NEED_ASSIGN" jdbcType="VARCHAR" property="isNeedAssign" />
+    <result column="SIM_CARD_NO" jdbcType="VARCHAR" property="simCardNo" />
+    <result column="IMSI" jdbcType="VARCHAR" property="imsi" />
+    <result column="IMEI" jdbcType="VARCHAR" property="imei" />
+    <result column="STATE" jdbcType="VARCHAR" property="state" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="RSRV_TIME1" jdbcType="TIMESTAMP" property="rsrvTime1" />
+    <result column="RSRV_TIME2" jdbcType="TIMESTAMP" property="rsrvTime2" />
+    <result column="RSRV_VALUE1" jdbcType="VARCHAR" property="rsrvValue1" />
+    <result column="RSRV_VALUE2" jdbcType="VARCHAR" property="rsrvValue2" />
+    <result column="RSRV_VALUE3" jdbcType="VARCHAR" property="rsrvValue3" />
+    <result column="RSRV_VALUE4" jdbcType="VARCHAR" property="rsrvValue4" />
+    <result column="RSRV_NUM1" jdbcType="DECIMAL" property="rsrvNum1" />
+    <result column="RSRV_NUM2" jdbcType="DECIMAL" property="rsrvNum2" />
+    <result column="PSPT_ID" jdbcType="VARCHAR" property="psptId" />
+    <result column="PAPERLESS_CONDUCT_STATE" jdbcType="VARCHAR" property="paperlessConductState" />
+    <result column="TRADE_SOURCE" jdbcType="CHAR" property="tradeSource" />
+  </resultMap>
+  <insert id="insert" parameterType="com.asia.entity.TfSapTrade">
+    insert into TF_SAP_TRADE (SAP_TRADE_ID, SAP_SUBSCRIBE_ID, CBSS_TRADE_ID, 
+      CBSS_SUBSCRIBE_ID, TRADE_EPARCHY_CODE, TRADE_CITY_CODE, 
+      TRADE_DEPART_ID, TRADE_STAFF_ID, ACCEPT_MONTH, 
+      ACCEPT_DATE, NET_TYPE_CODE, CUST_ID, 
+      CUST_NAME, SERIAL_NUMBER, TOTAL_FEE, 
+      TRADE_TYPE_CODE, SUBSCRIBE_STATE, NEXT_DEAL_TAG, 
+      CANCEL_EPARCHY_CODE, CANCEL_CITY_CODE, CANCEL_DEPART_ID, 
+      CANCEL_STAFF_ID, CANCEL_TAG, CANCEL_DATE, 
+      PRODUCT_ID, PRODUCT_NAME, PRODUCT_ID2, 
+      PRODUCT_NAME2, SERVICE_ID, SERVICE_NAME, 
+      DISCNT_CODE, DISCNT_NAME, IS_NEED_ASSIGN, 
+      SIM_CARD_NO, IMSI, IMEI, 
+      STATE, REMARK, RSRV_TIME1, 
+      RSRV_TIME2, RSRV_VALUE1, RSRV_VALUE2, 
+      RSRV_VALUE3, RSRV_VALUE4, RSRV_NUM1, 
+      RSRV_NUM2, PSPT_ID, PAPERLESS_CONDUCT_STATE, 
+      TRADE_SOURCE)
+    values (#{sapTradeId,jdbcType=DECIMAL}, #{sapSubscribeId,jdbcType=DECIMAL}, #{cbssTradeId,jdbcType=DECIMAL}, 
+      #{cbssSubscribeId,jdbcType=DECIMAL}, #{tradeEparchyCode,jdbcType=VARCHAR}, #{tradeCityCode,jdbcType=VARCHAR}, 
+      #{tradeDepartId,jdbcType=VARCHAR}, #{tradeStaffId,jdbcType=VARCHAR}, #{acceptMonth,jdbcType=DECIMAL}, 
+      #{acceptDate,jdbcType=TIMESTAMP}, #{netTypeCode,jdbcType=VARCHAR}, #{custId,jdbcType=DECIMAL}, 
+      #{custName,jdbcType=VARCHAR}, #{serialNumber,jdbcType=VARCHAR}, #{totalFee,jdbcType=DECIMAL}, 
+      #{tradeTypeCode,jdbcType=DECIMAL}, #{subscribeState,jdbcType=CHAR}, #{nextDealTag,jdbcType=CHAR}, 
+      #{cancelEparchyCode,jdbcType=VARCHAR}, #{cancelCityCode,jdbcType=VARCHAR}, #{cancelDepartId,jdbcType=VARCHAR}, 
+      #{cancelStaffId,jdbcType=VARCHAR}, #{cancelTag,jdbcType=CHAR}, #{cancelDate,jdbcType=TIMESTAMP}, 
+      #{productId,jdbcType=DECIMAL}, #{productName,jdbcType=VARCHAR}, #{productId2,jdbcType=DECIMAL}, 
+      #{productName2,jdbcType=VARCHAR}, #{serviceId,jdbcType=DECIMAL}, #{serviceName,jdbcType=VARCHAR}, 
+      #{discntCode,jdbcType=DECIMAL}, #{discntName,jdbcType=VARCHAR}, #{isNeedAssign,jdbcType=VARCHAR}, 
+      #{simCardNo,jdbcType=VARCHAR}, #{imsi,jdbcType=VARCHAR}, #{imei,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{rsrvTime1,jdbcType=TIMESTAMP}, 
+      #{rsrvTime2,jdbcType=TIMESTAMP}, #{rsrvValue1,jdbcType=VARCHAR}, #{rsrvValue2,jdbcType=VARCHAR}, 
+      #{rsrvValue3,jdbcType=VARCHAR}, #{rsrvValue4,jdbcType=VARCHAR}, #{rsrvNum1,jdbcType=DECIMAL}, 
+      #{rsrvNum2,jdbcType=DECIMAL}, #{psptId,jdbcType=VARCHAR}, #{paperlessConductState,jdbcType=VARCHAR}, 
+      #{tradeSource,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.asia.entity.TfSapTrade">
+    insert into TF_SAP_TRADE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sapTradeId != null">
+        SAP_TRADE_ID,
+      </if>
+      <if test="sapSubscribeId != null">
+        SAP_SUBSCRIBE_ID,
+      </if>
+      <if test="cbssTradeId != null">
+        CBSS_TRADE_ID,
+      </if>
+      <if test="cbssSubscribeId != null">
+        CBSS_SUBSCRIBE_ID,
+      </if>
+      <if test="tradeEparchyCode != null">
+        TRADE_EPARCHY_CODE,
+      </if>
+      <if test="tradeCityCode != null">
+        TRADE_CITY_CODE,
+      </if>
+      <if test="tradeDepartId != null">
+        TRADE_DEPART_ID,
+      </if>
+      <if test="tradeStaffId != null">
+        TRADE_STAFF_ID,
+      </if>
+      <if test="acceptMonth != null">
+        ACCEPT_MONTH,
+      </if>
+      <if test="acceptDate != null">
+        ACCEPT_DATE,
+      </if>
+      <if test="netTypeCode != null">
+        NET_TYPE_CODE,
+      </if>
+      <if test="custId != null">
+        CUST_ID,
+      </if>
+      <if test="custName != null">
+        CUST_NAME,
+      </if>
+      <if test="serialNumber != null">
+        SERIAL_NUMBER,
+      </if>
+      <if test="totalFee != null">
+        TOTAL_FEE,
+      </if>
+      <if test="tradeTypeCode != null">
+        TRADE_TYPE_CODE,
+      </if>
+      <if test="subscribeState != null">
+        SUBSCRIBE_STATE,
+      </if>
+      <if test="nextDealTag != null">
+        NEXT_DEAL_TAG,
+      </if>
+      <if test="cancelEparchyCode != null">
+        CANCEL_EPARCHY_CODE,
+      </if>
+      <if test="cancelCityCode != null">
+        CANCEL_CITY_CODE,
+      </if>
+      <if test="cancelDepartId != null">
+        CANCEL_DEPART_ID,
+      </if>
+      <if test="cancelStaffId != null">
+        CANCEL_STAFF_ID,
+      </if>
+      <if test="cancelTag != null">
+        CANCEL_TAG,
+      </if>
+      <if test="cancelDate != null">
+        CANCEL_DATE,
+      </if>
+      <if test="productId != null">
+        PRODUCT_ID,
+      </if>
+      <if test="productName != null">
+        PRODUCT_NAME,
+      </if>
+      <if test="productId2 != null">
+        PRODUCT_ID2,
+      </if>
+      <if test="productName2 != null">
+        PRODUCT_NAME2,
+      </if>
+      <if test="serviceId != null">
+        SERVICE_ID,
+      </if>
+      <if test="serviceName != null">
+        SERVICE_NAME,
+      </if>
+      <if test="discntCode != null">
+        DISCNT_CODE,
+      </if>
+      <if test="discntName != null">
+        DISCNT_NAME,
+      </if>
+      <if test="isNeedAssign != null">
+        IS_NEED_ASSIGN,
+      </if>
+      <if test="simCardNo != null">
+        SIM_CARD_NO,
+      </if>
+      <if test="imsi != null">
+        IMSI,
+      </if>
+      <if test="imei != null">
+        IMEI,
+      </if>
+      <if test="state != null">
+        STATE,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="rsrvTime1 != null">
+        RSRV_TIME1,
+      </if>
+      <if test="rsrvTime2 != null">
+        RSRV_TIME2,
+      </if>
+      <if test="rsrvValue1 != null">
+        RSRV_VALUE1,
+      </if>
+      <if test="rsrvValue2 != null">
+        RSRV_VALUE2,
+      </if>
+      <if test="rsrvValue3 != null">
+        RSRV_VALUE3,
+      </if>
+      <if test="rsrvValue4 != null">
+        RSRV_VALUE4,
+      </if>
+      <if test="rsrvNum1 != null">
+        RSRV_NUM1,
+      </if>
+      <if test="rsrvNum2 != null">
+        RSRV_NUM2,
+      </if>
+      <if test="psptId != null">
+        PSPT_ID,
+      </if>
+      <if test="paperlessConductState != null">
+        PAPERLESS_CONDUCT_STATE,
+      </if>
+      <if test="tradeSource != null">
+        TRADE_SOURCE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sapTradeId != null">
+        #{sapTradeId,jdbcType=DECIMAL},
+      </if>
+      <if test="sapSubscribeId != null">
+        #{sapSubscribeId,jdbcType=DECIMAL},
+      </if>
+      <if test="cbssTradeId != null">
+        #{cbssTradeId,jdbcType=DECIMAL},
+      </if>
+      <if test="cbssSubscribeId != null">
+        #{cbssSubscribeId,jdbcType=DECIMAL},
+      </if>
+      <if test="tradeEparchyCode != null">
+        #{tradeEparchyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeCityCode != null">
+        #{tradeCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeDepartId != null">
+        #{tradeDepartId,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeStaffId != null">
+        #{tradeStaffId,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptMonth != null">
+        #{acceptMonth,jdbcType=DECIMAL},
+      </if>
+      <if test="acceptDate != null">
+        #{acceptDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="netTypeCode != null">
+        #{netTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="custId != null">
+        #{custId,jdbcType=DECIMAL},
+      </if>
+      <if test="custName != null">
+        #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNumber != null">
+        #{serialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="totalFee != null">
+        #{totalFee,jdbcType=DECIMAL},
+      </if>
+      <if test="tradeTypeCode != null">
+        #{tradeTypeCode,jdbcType=DECIMAL},
+      </if>
+      <if test="subscribeState != null">
+        #{subscribeState,jdbcType=CHAR},
+      </if>
+      <if test="nextDealTag != null">
+        #{nextDealTag,jdbcType=CHAR},
+      </if>
+      <if test="cancelEparchyCode != null">
+        #{cancelEparchyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelCityCode != null">
+        #{cancelCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelDepartId != null">
+        #{cancelDepartId,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelStaffId != null">
+        #{cancelStaffId,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelTag != null">
+        #{cancelTag,jdbcType=CHAR},
+      </if>
+      <if test="cancelDate != null">
+        #{cancelDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=DECIMAL},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productId2 != null">
+        #{productId2,jdbcType=DECIMAL},
+      </if>
+      <if test="productName2 != null">
+        #{productName2,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceId != null">
+        #{serviceId,jdbcType=DECIMAL},
+      </if>
+      <if test="serviceName != null">
+        #{serviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="discntCode != null">
+        #{discntCode,jdbcType=DECIMAL},
+      </if>
+      <if test="discntName != null">
+        #{discntName,jdbcType=VARCHAR},
+      </if>
+      <if test="isNeedAssign != null">
+        #{isNeedAssign,jdbcType=VARCHAR},
+      </if>
+      <if test="simCardNo != null">
+        #{simCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="imsi != null">
+        #{imsi,jdbcType=VARCHAR},
+      </if>
+      <if test="imei != null">
+        #{imei,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="rsrvTime1 != null">
+        #{rsrvTime1,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rsrvTime2 != null">
+        #{rsrvTime2,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rsrvValue1 != null">
+        #{rsrvValue1,jdbcType=VARCHAR},
+      </if>
+      <if test="rsrvValue2 != null">
+        #{rsrvValue2,jdbcType=VARCHAR},
+      </if>
+      <if test="rsrvValue3 != null">
+        #{rsrvValue3,jdbcType=VARCHAR},
+      </if>
+      <if test="rsrvValue4 != null">
+        #{rsrvValue4,jdbcType=VARCHAR},
+      </if>
+      <if test="rsrvNum1 != null">
+        #{rsrvNum1,jdbcType=DECIMAL},
+      </if>
+      <if test="rsrvNum2 != null">
+        #{rsrvNum2,jdbcType=DECIMAL},
+      </if>
+      <if test="psptId != null">
+        #{psptId,jdbcType=VARCHAR},
+      </if>
+      <if test="paperlessConductState != null">
+        #{paperlessConductState,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeSource != null">
+        #{tradeSource,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="getTfSapTradeById" resultType="java.util.HashMap">
+  	select * from tf_sap_trade t where t.sap_trade_id = #{sapTradeId} and t.sap_subscribe_id=#{sapSubscribeId} 	
+  </select>
+  <insert id="insertTradeItem">
+  	insert into TF_SAP_TRADE_ITEM(SAP_TRADE_ID,ACCEPT_MONTH,ATTR_CODE,ATTR_VALUE,START_DATE,END_DATE) values
+  	(#{SAP_TRADE_ID},#{ACCEPT_MONTH},#{ATTR_CODE},#{ATTR_VALUE},sysdate,sysdate)
+  </insert>
+</mapper>

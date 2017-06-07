@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.asia.dao.ITradeServiceDao"> 
+
+  <!-- 测试 --> 
+  <insert id="insertTradeItem">
+  	insert into TF_SAP_TRADE_ITEM(SAP_TRADE_ID,ACCEPT_MONTH,ATTR_CODE,ATTR_VALUE,START_DATE,END_DATE) values
+  	(#{SAP_TRADE_ID},#{ACCEPT_MONTH},#{ATTR_CODE},#{ATTR_VALUE},sysdate,sysdate)
+  </insert>
+   
+  <!-- 查测试用例 -->
+   <select id="selectCaseList" resultType="HashMap">
+  	select * from TD_SAP_CS_CASE where flag='0'
+  </select>
+  
+  <update id="updateCase" parameterType="String">
+   update TD_SAP_CS_CASE set flag='1',update_time=sysdate
+   where case_id=#{caseId}
+  </update>
+   
+   <!--查询产品信息 -->
+  <select id="selectProdList" resultType="HashMap" parameterType="String">
+  	select * from TD_SAP_CS_PRODUCT where CASE_ID= #{CASE_ID} and PRODUCT_SOURCE=#{PRODUCT_SOURCE}
+  </select>
+   <!--查询产品下元素信息 -->
+  <select id="selectElementList" resultType="HashMap" parameterType="String">
+  	select PACKAGE_ID,ELEMENT_ID,ELEMENT_TYPE from TD_SAP_CS_ELEMENT where PRODUCT_ID= #{PRODUCT_ID} 
+  </select>
+  
+  <select id="selectStaffInfo" resultType="HashMap" parameterType="String">
+  	select * from TD_SAP_CS_STAFFIFNO where EPARCHY_CODE=#{EPARCHY_CODE} 	
+  </select>
+  
+  
+  <!-- CALLABLE的意思是调用存储过程 -->
+  <select id="callCopyTrade" parameterType="Map" statementType="CALLABLE"> 
+	<![CDATA[  
+	    {call p_sap_copytrade(#{in_trade_id,jdbcType=VARCHAR,mode=IN},#{on_result,jdbcType=VARCHAR,mode=OUT})}
+	]]>
+  </select>
+  <!--调用结果入表 -->
+  <insert id="insertCsSapProdResult" parameterType="Map">
+  	insert into TI_CS_SAPPROD_RESULT(TRADE_ID,CASE_ID,REQUEST_CONTENT,RESPONSE_CONTENT,UPDATE_TIME,REMARK,STAFF_ID,DEPART_ID,EPARCHY_CODE,CITY_CODE,MSG,HTTP_CODE,MSG_SOURCE,HTTP_METHOD,RESULT_FLAG)
+  	values(#{TRADE_ID},#{CASE_ID},#{REQUEST_CONTENT},#{RESPONSE_CONTENT},sysdate,#{REMARK},#{STAFF_ID},#{DEPART_ID},#{EPARCHY_CODE},#{CITY_CODE},#{MSG,},#{HTTP_CODE},#{MSG_SOURCE},#{HTTP_METHOD},#{RESULT_FLAG})
+  </insert>
+  <!--插产品表 -->
+  <insert id="insertCsSapProd">
+   insert into TF_CS_SAP_PROD(TRADE_ID,PRODUCT_MODE,PRODUCT_ID,FIRSTMONBILLMODE) values
+   <foreach item="item" index="index" collection="prodList" open="" separator="," close="">
+   (#{TRADE_ID},#{item.PRODUCT_MODE},#{item.PRODUCT_ID},#{FIRSTMONBILLMODE})  
+   </foreach>
+  </insert>
+  
+  <!-- 插元素表 -->
+  <insert id="insertCsSapElement">
+  insert into TF_CS_SAP_ELEMENT(TRADE_ID,PRODUCT_ID,PACKAGE_ID,ELEMENT_ID,ELEMENT_TYPE) values
+   <foreach item="item" index="index" collection="elementList" open="" separator="," close="">
+     (#{TRADE_ID},#{item.PRODUCT_ID},#{item.PACKAGE_ID},#{item.ELEMENT_ID},#{item.ELEMENT_TYPE})  
+   </foreach>
+  </insert>
+  
+  <select id="getSequence"  parameterType="String" resultType="String">
+  	 select SEQ_AOP_TEST_ID.nextval from dual  
+  </select>
+  
+   <select id="getSysdate"  parameterType="String" resultType="String">
+  	 select to_char(sysdate,'yyyy-mm-dd hh24:mi:ss') from dual  
+  </select>
+  
+  <insert id="insertCsCaseResult" parameterType="String">
+  	insert into TI_CS_SAPCASE_RESULT(CASE_ID,START_DATE,END_DATE) values
+  	(#{CASE_ID},to_date(#{START_DATE},'yyyy-mm-dd hh24:mi:ss'),to_date(#{END_DATE},'yyyy-mm-dd hh24:mi:ss'))
+  </insert>
+
+ <select id="selectTradeWxList" resultType="HashMap" parameterType="String">
+  	select * from tf_sap_tradewx_outnotify where outnotify_outtrade_no= #{TRADE_ID}
+  </select>
+  
+  
+</mapper>

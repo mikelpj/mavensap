@@ -1,0 +1,4 @@
+所有批量文件导入为.txt格式,号码请以逗号隔开，格式如下：
+156xxxxxxxx,156xxxxxxxx,156xxxxxxxx,156xxxxxxxx,156xxxxxxxx,156xxxxxxxx
+
+
